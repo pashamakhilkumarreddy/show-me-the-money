@@ -1,0 +1,63 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "lint": "npm run lint-ts && npm run lint-md",
+    "lint-ts": "eslint . --ext ts,json --report-unused-disable-directives --max-warnings 0",
+    "lint-ts:fix": "eslint . --ext ts,json --fix --report-unused-disable-directives --max-warnings 0",
+    "lint-md": "eslint '**/*.md'",
+    "lint-md:fix": "eslint '**/*.md' --fix",
+    "format": "prettier --config ./.prettierrc --no-editorconfig --check .",
+    "format:fix": "prettier --config ./.prettierrc --no-editorconfig --ignore-unknown --write .",
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --watch --config jest.config.js",
+    "test:coverage": "jest --coverage --config jest.config.js",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pino": "^9.3.2",
+    "pino-http": "^10.2.0",
+    "pino-pretty": "^11.2.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/lint": "^19.2.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.4.2",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.5",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.9",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "lint-staged": {
+    "src/**/*.!(*spec).{ts,js,json}": [
+      "npm run lint:fix",
+      "prettier --write --no-editorconfig"
+    ],
+    "*.md": [
+      "prettier --write --no-editorconfig"
+    ]
+  }
+}
