@@ -31,7 +31,7 @@ FROM node:${NODE_VERSION}-alpine as production
 
 USER node
 
-EXPOSE 80
+EXPOSE 5000
 
 WORKDIR /app
 

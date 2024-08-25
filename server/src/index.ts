@@ -3,12 +3,12 @@ import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import routes from './routes';
 import config from './config';
-import logger, {httpLogger} from './utils/logger';
+import {httpLogger} from './utils/logger';
 
 const app = express();
 
 const {
-  server: { PORT, HOST }
+  server: { PORT }
 } = config;
 
 app.use(httpLogger);
@@ -41,6 +41,8 @@ app.use(
   }
 );
 
-app.listen(PORT, HOST, () => {
-  console.info(`Server is up and running on http://${HOST}:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.info(`Server is up and running on ${PORT}`);
 });
+
+export default app;
