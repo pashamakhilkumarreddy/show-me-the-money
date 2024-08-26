@@ -10,7 +10,7 @@ import { ReportingTableProps } from './ReportingTable.types';
 const ReportingTable: React.FC<ReportingTableProps> = ({ data }) => {
   return (
     <div className="container">
-      {data?.map(({ Rows = [], ReportTitles }, i: number) => (
+      {data?.map(({ Rows = [], ReportTitles = [] }, i: number) => (
         <div className="overflow-x-auto" key={i.toString()}>
           <h2 className="text-center text-4xl font-bold text-gray-800 mt-3 mb-4">
             {ReportTitles.join(' ')}
